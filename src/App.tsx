@@ -1,10 +1,9 @@
 function App() {
-  
   return (
     <div>
-     <h1>HELLO, MR ROBOT!</h1>
+      <h1 className="text-3xl font-bold underline">HELLO, MR ROBOT!</h1>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
