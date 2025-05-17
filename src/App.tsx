@@ -6,6 +6,10 @@ import { BoardState } from "./types";
 function App() {
   const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
 
+  function handleClick(index: number) {
+    console.log("Square clicked:", index);
+    setBoard(board.map((square, i) => (index === i ? "X" : square)));
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-blue-200">
@@ -16,10 +20,12 @@ function App() {
         </div>
 
         <div className="mb-6 text-center">
-          <p className="text-xl font-semibold text-gray-100">A vez do jogador X</p>
+          <p className="text-xl font-semibold text-gray-100">
+            A vez do jogador X
+          </p>
         </div>
 
-        <Board board={board} />
+        <Board board={board} onClick={handleClick} />
       </div>
     </main>
   );
