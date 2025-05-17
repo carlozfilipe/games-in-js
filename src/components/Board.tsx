@@ -1,19 +1,16 @@
+import { BoardState } from "../types";
 import Square from "./Square";
 
-export default function Board() {
+type BoardProps = {
+  board: BoardState;
+};
+
+export default function Board({ board }: BoardProps) {
   return (
     <div className="mx-auto grid max-w-[26rem] grid-cols-3 gap-4">
-      <Square />
-      <Square />
-      <Square />
-
-      <Square />
-      <Square />
-      <Square />
-
-      <Square />
-      <Square />
-      <Square />
+      {board.map((square, index) => (
+        <Square key={index} value={square} />
+      ))}
     </div>
   );
 }
