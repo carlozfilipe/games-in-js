@@ -6,11 +6,11 @@ import { BoardState } from "./types";
 function App() {
   const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
 
-  const currentPlayer = board.filter(Boolean).length % 2 === 0 ? 'X' : 'O';
+  const currentPlayer = board.filter(Boolean).length % 2 === 0 ? "X" : "O";
 
   function handleClick(index: number) {
     console.log("Square clicked:", index);
-    setBoard(board.map((square, i) => (index === i ? currentPlayer : square)))
+    setBoard(board.map((square, i) => (index === i ? currentPlayer : square)));
   }
 
   return (
@@ -23,7 +23,7 @@ function App() {
 
         <div className="mb-6 text-center">
           <p className="text-xl font-semibold text-gray-100">
-            A vez do jogador X
+            A vez do jogador {currentPlayer}
           </p>
         </div>
 
