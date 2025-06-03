@@ -2,15 +2,17 @@ import { Gamepad2 } from "lucide-react";
 import Board from "./components/Board";
 import { useState } from "react";
 import { BoardState } from "./types";
-import { checkWinner } from "./helpers/game-logic";
+import { checkWinner, isBoardFull } from "./helpers/game-logic";
 
 function App() {
   const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
-   const winner = checkWinner(board);
+  const winner = checkWinner(board);
+  const isDraw = !winner && isBoardFull(board);
 
   const getGameStatus = () => {
-    if (winner) return `Player ${winner} wins!`;
-    return `Player ${currentPlayer}'s Turn`;
+    if (winner) return `O jogador ${winner} venceu!`;
+    if (isDraw) return `Deu empate!`;
+    return `A vez do jogador ${currentPlayer}`;
   };
 
   const currentPlayer = board.filter(Boolean).length % 2 === 0 ? "X" : "O";
@@ -35,7 +37,7 @@ function App() {
           </p>
         </div>
 
-        <Board board={board} onClick={handleClick} />
+        <Board board={board} winner={winner} onClick={handleClick} />
       </div>
     </main>
   );
