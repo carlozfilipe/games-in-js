@@ -9,6 +9,10 @@ function App() {
   const winner = checkWinner(board);
   const isDraw = !winner && isBoardFull(board);
 
+  const handleRestart = () => {
+    setBoard(Array(9).fill(null));
+  };
+
   const getGameStatus = () => {
     if (winner) return `O jogador ${winner} venceu!`;
     if (isDraw) return `Deu empate!`;
@@ -41,7 +45,10 @@ function App() {
 
         {(winner || isDraw) && (
           <div className="mt-8 flex justify-center">
-            <button className="group flex items-center gap-2 rounded-lg bg-pink px-6 py-3 text-sm text-white hover:opacity-90">
+            <button
+              className="group flex items-center gap-2 rounded-lg bg-pink px-6 py-3 text-sm text-white hover:opacity-90"
+              onClick={handleRestart}
+            >
               Reinicar o jogo{" "}
               <RotateCcw className="transistion-transform duration-500 group-hover:-rotate-180" />
             </button>
